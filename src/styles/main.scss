@@ -60,14 +60,7 @@ body {
     }
   }
 
-  $week-day:
-    0 mon,
-    1 tue,
-    2 wed,
-    3 thu,
-    4 fri,
-    5 sat,
-    6 sun;
+  $week-day: 0 mon, 1 tue, 2 wed, 3 thu, 4 fri, 5 sat, 6 sun;
 
   @each $num, $i in $week-day {
     &--start-day-#{$i} {
