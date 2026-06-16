@@ -1,11 +1,14 @@
 $day-gap: 1px;
 $day-size: 100px;
 $calendar-padding: 10px;
-$calendar-widh: $day-size * 7 + $day-gap * 6 + $calendar-padding * 2;
+$calendar-width: $day-size * 7 + $day-gap * 6 + $calendar-padding * 2;
+$hover-shift: -20px;
+
+* {
+  box-sizing: border-box;
+}
 
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 30px;
   margin: 0;
   height: 100vh;
   display: flex;
@@ -18,10 +21,9 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: $day-gap;
-  width: $calendar-widh;
+  width: $calendar-width;
 
   &__day {
-    box-sizing: border-box;
     background-color: #eee;
     border: 1px solid #000;
     width: $day-size;
@@ -31,19 +33,20 @@ body {
     align-items: center;
     justify-content: center;
 
-    transition: transform 500ms;
+    transition:
+      background-color 0.5s,
+      transform 0.5s;
 
     &:hover {
       cursor: pointer;
       background-color: #ffbfcb;
-      transform: translateY(-20px);
+      transform: translateY($hover-shift);
     }
   }
 
   @for $i from 28 through 31 {
     &--month-length-#{$i} {
-      $last-day-counter: 31 - $i;
-      .calendar__day:nth-last-child(-n + #{$last-day-counter}) {
+      .calendar__day:nth-child(n + #{$i + 1}) {
         display: none;
       }
     }
@@ -52,6 +55,8 @@ body {
   @for $i from 1 through 31 {
     &__day:nth-child(#{$i})::before {
       content: '#{$i}';
+      font-family: Arial, sans-serif;
+      font-size: 30px;
     }
   }
 
