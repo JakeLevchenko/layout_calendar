@@ -3,44 +3,55 @@ $day-size: 100px;
 $calendar-padding: 10px;
 $calendar-width: $day-size * 7 + $day-gap * 6 + $calendar-padding * 2;
 $hover-shift: -20px;
+$week-day:
+  0 mon,
+  1 tue,
+  2 wed,
+  3 thu,
+  4 fri,
+  5 sat,
+  6 sun;
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+
+  height: 100vh;
+  margin: 0;
 }
 
 .calendar {
-  padding: $calendar-padding;
   display: flex;
   flex-wrap: wrap;
   gap: $day-gap;
+
   width: $calendar-width;
+  padding: $calendar-padding;
 
   &__day {
-    background-color: #eee;
-    border: 1px solid #000;
-    width: $day-size;
-    height: $day-size;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
+    width: $day-size;
+    height: $day-size;
+    border: 1px solid #000;
+
+    background-color: #eee;
+
     transition:
-      background-color 0.5s,
-      transform 0.5s;
+      transform 0.5s,
+      background-color 0.5s;
 
     &:hover {
       cursor: pointer;
-      background-color: #ffbfcb;
       transform: translateY($hover-shift);
+      background-color: #ffbfcb;
     }
   }
 
@@ -59,8 +70,6 @@ body {
       font-size: 30px;
     }
   }
-
-  $week-day: 0 mon, 1 tue, 2 wed, 3 thu, 4 fri, 5 sat, 6 sun;
 
   @each $num, $i in $week-day {
     &--start-day-#{$i} {
