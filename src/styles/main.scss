@@ -3,14 +3,15 @@ $day-size: 100px;
 $calendar-padding: 10px;
 $calendar-width: $day-size * 7 + $day-gap * 6 + $calendar-padding * 2;
 $hover-shift: -20px;
-$week-day:
+$week-day: (
   0 mon,
   1 tue,
   2 wed,
   3 thu,
   4 fri,
   5 sat,
-  6 sun;
+  6 sun
+  );
 
 * {
   box-sizing: border-box;
